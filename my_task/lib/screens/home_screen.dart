@@ -76,6 +76,17 @@ class _HomeScreenState extends State<HomeScreen> {
           actions: [
             TextButton(
               onPressed: () {
+                setState(() {
+                  filteredList = userObj.getUserList().take(pageSize).toList();
+                  currentPage = 0;
+                });
+                searchController.clear();
+                Navigator.of(context).pop();
+              },
+              child: const Text('Clear'),
+            ),
+            TextButton(
+              onPressed: () {
                 String filters = searchController.text;
                 if (filters.isNotEmpty) {
                   setState(() {
@@ -92,19 +103,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 }
                 Navigator.of(context).pop();
               },
-              child: const Text('Clear'),
-            ),
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  filteredList = userObj.getUserList().take(pageSize).toList();
-                  currentPage = 0;
-                });
-                searchController.clear();
-                Navigator.of(context).pop();
-              },
               child: const Text('Search'),
-            ),
+            )
           ],
         );
       },
@@ -130,6 +130,12 @@ class _HomeScreenState extends State<HomeScreen> {
           actions: [
             TextButton(
               onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
                 String updateRupee = updateRupeeController.text.trim();
                 if (updateRupee.isNotEmpty &&
                     int.tryParse(updateRupee) != null &&
@@ -152,13 +158,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           text: 'Enter the valid rupee between 0-100'));
                 }
               },
-              child: const Text('Cancel'),
-            ),
-            TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Update'))
+              child: const Text('Update'),
+            )
           ],
         );
       },
