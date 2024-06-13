@@ -63,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: Image.asset(
-                  'assets/images/evitalrx.jpg',
+                  'assets/images/evitalrx.png',
                   fit: BoxFit.cover,
                   width: 150,
                   height: 150,
@@ -79,6 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Container(
               width: 300,
               child: TextField(
+                style: TextStyle(color: Colors.blue[900]),
                 controller: mobileController,
                 cursorColor: Colors.blue,
                 keyboardType: TextInputType.number,

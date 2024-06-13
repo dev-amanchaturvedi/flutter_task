@@ -44,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen>
                 borderRadius: BorderRadius.circular(100),
                 child: Container(
                   child: Image.asset(
-                    "assets/images/evitalrx.jpg",
+                    "assets/images/evitalrx.png",
                     height: 200,
                   ),
                 )),
