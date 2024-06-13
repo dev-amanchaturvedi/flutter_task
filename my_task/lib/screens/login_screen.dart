@@ -46,9 +46,15 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/background.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -70,44 +76,50 @@ class _LoginScreenState extends State<LoginScreen> {
                   fontSize: 50, color: Colors.blue, fontFamily: 'PTSerif'),
             ),
             const SizedBox(height: 20),
-            TextField(
-              controller: mobileController,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                labelStyle: TextStyle(color: Colors.blue),
-                labelText: 'Mobile Number',
-                focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.blue, width: 2)),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.black, width: 5)),
+            Container(
+              width: 350,
+              child: TextField(
+                controller: mobileController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelStyle: TextStyle(color: Colors.blue[900]),
+                  labelText: 'Mobile Number',
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.blue, width: 2)),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.black, width: 5)),
+                ),
               ),
             ),
             const SizedBox(height: 16),
-            TextField(
-              controller: passwordController,
-              keyboardType: TextInputType.emailAddress,
-              obscureText: showPassword ?? true,
-              decoration: InputDecoration(
-                labelStyle: TextStyle(color: Colors.blue),
-                suffixIcon: IconButton(
-                  icon: const Icon(Icons.remove_red_eye),
-                  onPressed: () {
-                    setState(() {
-                      showPassword = false;
-                    });
-                  },
-                  disabledColor: Colors.black,
-                  color: Colors.blue,
+            Container(
+              width: 350,
+              child: TextField(
+                controller: passwordController,
+                keyboardType: TextInputType.emailAddress,
+                obscureText: showPassword ?? true,
+                decoration: InputDecoration(
+                  labelStyle: TextStyle(color: Colors.blue[900]),
+                  suffixIcon: IconButton(
+                    icon: const Icon(Icons.remove_red_eye),
+                    onPressed: () {
+                      setState(() {
+                        showPassword = false;
+                      });
+                    },
+                    disabledColor: Colors.black,
+                    color: Colors.blue,
+                  ),
+                  labelText: 'Password',
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.blue, width: 2)),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.black, width: 5)),
                 ),
-                labelText: 'Password',
-                focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.blue, width: 2)),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.black, width: 5)),
               ),
             ),
             const SizedBox(height: 16),

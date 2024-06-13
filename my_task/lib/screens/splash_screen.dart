@@ -11,8 +11,6 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
-  AnimationController? _controller;
-  Animation<double>? _animation;
   @override
   void initState() {
     super.initState();
@@ -29,36 +27,40 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
-      body: Center(
+      backgroundColor: Colors.white,
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/background.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Hero(
-              tag: 'Logo',
-              child: ClipRRect(
+            ClipRRect(
                 borderRadius: BorderRadius.circular(100),
-                child: Image.asset(
-                  'assets/images/evitalrx.jpg',
-                  fit: BoxFit.cover,
-                  width: 200,
-                  height: 200,
-                ),
-              ),
-            ),
+                child: Container(
+                  child: Image.asset(
+                    "assets/images/evitalrx.jpg",
+                    height: 200,
+                  ),
+                )),
             const SizedBox(height: 20),
             const Text(
               'eVital',
               style: TextStyle(
                   fontSize: 50,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: Colors.blue,
                   fontFamily: 'Bellota'),
             ),
             const Text(
               'Your Health Portal',
               style: TextStyle(
-                  fontSize: 40, color: Colors.white, fontFamily: 'Bellota'),
+                  fontSize: 40, color: Colors.blue, fontFamily: 'Bellota'),
             ),
           ],
         ),
