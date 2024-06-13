@@ -168,138 +168,141 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[200],
-      appBar: AppBar(
-          backgroundColor: Colors.blue,
-          title: const Text(
-            'User List',
-            style: TextStyle(
-                color: Colors.white, fontSize: 30, fontFamily: 'PTSerif'),
-          ),
-          centerTitle: true),
-      body: filteredList.isEmpty
-          ? const Center(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('☹️',
-                        style: TextStyle(
-                          fontSize: 50,
-                        )),
-                    Text(
-                      'No Data Found',
-                      style: TextStyle(
-                          fontSize: 30,
-                          color: Colors.white,
-                          fontFamily: 'PTSerif'),
-                    ),
-                  ],
-                ),
+  backgroundColor: Colors.blue[200],
+  appBar: AppBar(
+    backgroundColor: Colors.blue,
+    title: const Text(
+      'User List',
+      style: TextStyle(
+        color: Colors.white, fontSize: 30, fontFamily: 'PTSerif'),
+    ),
+    centerTitle: true,
+  ),
+  body: filteredList.isEmpty
+    ? const Center(
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('☹️',
+                  style: TextStyle(
+                    fontSize: 50,
+                  )),
+              Text(
+                'No Data Found',
+                style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.white,
+                    fontFamily: 'PTSerif'),
               ),
-            )
-          : Column(
-              children: [
-                Expanded(
-                  child: ListView.builder(
-                    controller: scrollController,
-                    itemBuilder: (context, index) {
-                      if (index == filteredList.length) {
-                        // This is the additional item for the loading indicator
-                        return isLoading
-                            ? const Center(child: CircularProgressIndicator())
-                            : const SizedBox.shrink();
-                      }
+            ],
+          ),
+        ),
+      )
+    : Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              controller: scrollController,
+              itemBuilder: (context, index) {
+                if (index == filteredList.length) {
+                  // This is the additional item for the loading indicator
+                  return isLoading
+                      ? const Center(child: CircularProgressIndicator())
+                      : const SizedBox.shrink();
+                }
 
-                      return InkWell(
-                        onTap: () {
-                          updateRupeeData(context, index);
-                          setState(() {});
-                        },
-                        child: Card(
-                          child: ListTile(
-                            leading: Container(
-                              height: 45,
-                              width: 45,
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(20),
-                                  child:
-                                      Image.network(filteredList[index].image)),
-                            ),
-                            title: Text(
-                              filteredList[index].name,
-                              style: const TextStyle(
-                                  fontSize: 20, fontFamily: 'PTSerif'),
-                            ),
-                            subtitle: Row(
-                              children: [
-                                ResuableTileData.giveTile(
-                                    data: filteredList[index].city,
-                                    icon: const Icon(
-                                      Icons.location_city,
-                                      size: 18,
-                                    )),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                ResuableTileData.giveTile(
-                                    data: filteredList[index].phone,
-                                    icon: const Icon(
-                                      Icons.phone,
-                                      size: 18,
-                                    )),
-                              ],
-                            ),
-                            trailing: Container(
-                              height: 45,
-                              width: 70,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                    color: Colors.blue,
-                                  )),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    filteredList[index].rupee.toString(),
-                                    style: const TextStyle(fontSize: 16),
-                                  ),
-                                  const Icon(Icons.currency_rupee, size: 16),
-                                  const SizedBox(
-                                    width: 3,
-                                  ),
-                                  Icon(
-                                    (filteredList[index].rupee >= 50)
-                                        ? Icons.arrow_upward_outlined
-                                        : Icons.arrow_downward_outlined,
-                                    color: (filteredList[index].rupee >= 50)
-                                        ? Colors.green
-                                        : Colors.red,
-                                    size: 18,
-                                  ),
-                                ],
+                return InkWell(
+                  onTap: () {
+                    updateRupeeData(context, index);
+                    setState(() {});
+                  },
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListTile(
+                        leading: Container(
+                          height: 45,
+                          width: 45,
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Image.network(filteredList[index].image)),
+                        ),
+                        title: Text(
+                          filteredList[index].name,
+                          style: const TextStyle(
+                              fontSize: 20, fontFamily: 'PTSerif'),
+                        ),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ResuableTileData.giveTile(
+                                data: filteredList[index].city,
+                                icon: const Icon(
+                                  Icons.location_city,
+                                  size: 18,
+                                )),
+                            const SizedBox(height: 5),
+                            ResuableTileData.giveTile(
+                                data: filteredList[index].phone,
+                                icon: const Icon(
+                                  Icons.phone,
+                                  size: 18,
+                                )),
+                          ],
+                        ),
+                        trailing: Container(
+                          height: 45,
+                          width: 80,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                color: Colors.blue,
+                              )),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                filteredList[index].rupee.toString(),
+                                style: const TextStyle(fontSize: 16),
                               ),
-                            ),
+                              const Icon(Icons.currency_rupee, size: 16),
+                              const SizedBox(
+                                width: 3,
+                              ),
+                              Icon(
+                                (filteredList[index].rupee >= 50)
+                                    ? Icons.arrow_upward_outlined
+                                    : Icons.arrow_downward_outlined,
+                                color: (filteredList[index].rupee >= 50)
+                                    ? Colors.green
+                                    : Colors.red,
+                                size: 18,
+                              ),
+                            ],
                           ),
                         ),
-                      );
-                    },
-                    itemCount: filteredList.length + (isLoading ? 1 : 0),
+                      ),
+                    ),
                   ),
-                ),
-                if (isLoading)
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: CircularProgressIndicator(),
-                  ),
-              ],
+                );
+              },
+              itemCount: filteredList.length + (isLoading ? 1 : 0),
             ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: findFilteredList,
-        child: const Icon(Icons.search, color: Colors.blue),
+          ),
+          if (isLoading)
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: CircularProgressIndicator(),
+            ),
+        ],
       ),
-    );
+  floatingActionButton: FloatingActionButton(
+    onPressed: findFilteredList,
+    child: const Icon(Icons.search, color: Colors.blue),
+  ),
+);
+
   }
 }

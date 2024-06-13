@@ -77,9 +77,10 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             const SizedBox(height: 20),
             Container(
-              width: 350,
+              width: 300,
               child: TextField(
                 controller: mobileController,
+                cursorColor: Colors.blue,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   labelStyle: TextStyle(color: Colors.blue[900]),
@@ -95,9 +96,10 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             const SizedBox(height: 16),
             Container(
-              width: 350,
+              width: 300,
               child: TextField(
                 controller: passwordController,
+                cursorColor: Colors.blue,
                 keyboardType: TextInputType.emailAddress,
                 obscureText: showPassword ?? true,
                 decoration: InputDecoration(
