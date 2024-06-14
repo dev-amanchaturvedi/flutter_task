@@ -111,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void updateRupeeData(BuildContext context, int index) {
+  void updateRupeeData(BuildContext context, int id) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -143,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         int.parse(updateRupeeController.text.trim()) <= 100)) {
                   setState(() {
                     userObj.updateRupee(
-                        index, int.parse(updateRupeeController.text));
+                        id, int.parse(updateRupeeController.text));
                   });
                   ScaffoldMessenger.of(context).showSnackBar(
                       ReusableSnackBar.give(
@@ -216,14 +216,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
                       return InkWell(
                         onTap: () {
-                          updateRupeeData(context, index);
+                          int id = filteredList[index].id - 1;
+                          updateRupeeData(context, id);
                           setState(() {});
                         },
                         child: Card(
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: ListTile(
-                              leading: Container(
+                              leading: SizedBox(
                                 height: 45,
                                 width: 45,
                                 child: ClipRRect(

@@ -13,7 +13,7 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController mobileController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  bool? showPassword;
+  bool showPassword = true;
   final correctNumber = 9033006262;
   final correctPassword = 'eVital@12';
 
@@ -100,16 +100,17 @@ class _LoginScreenState extends State<LoginScreen> {
               width: 300,
               child: TextField(
                 controller: passwordController,
+                style: TextStyle(color: Colors.blue[900]),
                 cursorColor: Colors.blue,
                 keyboardType: TextInputType.emailAddress,
-                obscureText: showPassword ?? true,
+                obscureText: showPassword,
                 decoration: InputDecoration(
                   labelStyle: TextStyle(color: Colors.blue[900]),
                   suffixIcon: IconButton(
                     icon: const Icon(Icons.remove_red_eye),
                     onPressed: () {
                       setState(() {
-                        showPassword = false;
+                        showPassword = !showPassword;
                       });
                     },
                     disabledColor: Colors.black,

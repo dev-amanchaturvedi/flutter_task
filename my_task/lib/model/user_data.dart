@@ -338,8 +338,6 @@ class UserData {
   }
 
   void updateRupee(int index, int newValue) {
-    print(_userList[index].rupee);
     _userList[index].rupee = newValue;
-    print(_userList[index].rupee);
   }
 }
